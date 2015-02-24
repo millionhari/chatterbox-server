@@ -1,28 +1,34 @@
 var data = require('./messages.js');
+
 var responseFunc = {
-  POST: function(request){
+  POST: function(request, response, headers){
     request.on('data', function(a){
       a = JSON.parse(a);
       var date = new Date;
       a.createdAt = date.toISOString();
       a.updatedAt = date.toISOString();
       a.objectId = Date.parse(date);
-      console.log(a)
       data.results.push(a);
     });
+    response.writeHead(201, headers);
   },
-  OPTIONS: function(){},
-  GET: function(request){}
+  OPTIONS: function(request, response, headers){
+    response.writeHead(200, headers);
+  },
+  GET: function(request, response, headers){
+    if (request.url === "/classes/messages" || request.url === "/classes/room1"){
+      response.writeHead(200, headers);
+    }else{
+      response.writeHead(404, headers);
+    }
+  }
 }
-
 
 var requestHandler = function(request, response) {
   console.log("Serving request type " + request.method + " for url " + request.url);
-  var statusCode = 200;
   var headers = defaultCorsHeaders;
   headers['Content-Type'] = "application/json";
-  response.writeHead(statusCode, headers);
-  responseFunc[request.method](request, response);
+  responseFunc[request.method](request, response, headers);
   response.end(JSON.stringify(data))
 };
 
