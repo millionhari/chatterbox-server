@@ -6,7 +6,8 @@ $(function() {
 //TODO: The current 'addFriend' function just adds the class 'friend'
 //to all messages sent by the user
     // server: 'https://api.parse.com/1/classes/chatterbox/',
-    server: 'http://127.0.0.1:3000/classes/messages',
+    // server: 'http://127.0.0.1:3000/classes/messages',
+    server: '/messages',
     username: 'anonymous',
     roomname: 'lobby',
     lastMessageId: 0,
@@ -77,7 +78,7 @@ $(function() {
           var displayedRoom = $('.chat span').first().data('roomname');
           app.stopSpinner();
           // Only bother updating the DOM if we have a new message
-          if (mostRecentMessage.objectId !== app.lastMessageId || app.roomname !== displayedRoom) {
+          // if (mostRecentMessage.objectId !== app.lastMessageId || app.roomname !== displayedRoom) {
             // Update the UI with the fetched rooms
             app.populateRooms(data.results);
 
@@ -86,7 +87,7 @@ $(function() {
 
             // Store the ID of the most recent message
             app.lastMessageId = mostRecentMessage.objectId;
-          }
+          // }
         },
         error: function(data) {
           console.error('chatterbox: Failed to fetch messages');
@@ -107,15 +108,15 @@ $(function() {
       }
 
       // Make it scroll to the bottom
-      var scrollTop = app.$chats.prop('scrollHeight');
-      if (animate) {
-        app.$chats.animate({
-          scrollTop: scrollTop
-        });
-      }
-      else {
-        app.$chats.scrollTop(scrollTop);
-      }
+      // var scrollTop = app.$chats.prop('scrollHeight');
+      // if (animate) {
+      //   app.$chats.animate({
+      //     scrollTop: scrollTop
+      //   });
+      // }
+      // else {
+      //   app.$chats.scrollTop(scrollTop);
+      // }
     },
     populateRooms: function(results) {
       app.$roomSelect.html('<option value="__newRoom">New room...</option><option value="" selected>Lobby</option></select>');
