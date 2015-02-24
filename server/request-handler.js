@@ -16,7 +16,7 @@ var responseFunc = {
     response.writeHead(200, headers);
   },
   GET: function(request, response, headers){
-    if (request.url === "/classes/messages" || request.url === "/classes/room1"){
+    if (request.url.slice(0, 17) === "/classes/messages" || request.url.slice(0, 17) === "/classes/room1"){
       response.writeHead(200, headers);
     }else{
       response.writeHead(404, headers);
@@ -25,7 +25,7 @@ var responseFunc = {
 }
 
 var requestHandler = function(request, response) {
-  console.log("Serving request type " + request.method + " for url " + request.url);
+  // console.log("Serving request type " + request.method + " for url " + request.url);
   var headers = defaultCorsHeaders;
   headers['Content-Type'] = "application/json";
   responseFunc[request.method](request, response, headers);

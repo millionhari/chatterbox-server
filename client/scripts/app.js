@@ -6,7 +6,7 @@ $(function() {
 //TODO: The current 'addFriend' function just adds the class 'friend'
 //to all messages sent by the user
     // server: 'https://api.parse.com/1/classes/chatterbox/',
-    server: 'http://127.0.0.1:3000/',
+    server: 'http://127.0.0.1:3000/classes/messages',
     username: 'anonymous',
     roomname: 'lobby',
     lastMessageId: 0,
@@ -47,7 +47,7 @@ $(function() {
         data: JSON.stringify(data),
         contentType: 'application/json',
         success: function (data) {
-          console.log('chatterbox: Message sent', data);
+          console.log('chatterbox: Message sent');
           // Trigger a fetch to update the messages, pass true to animate
           app.fetch();
         },
@@ -63,7 +63,6 @@ $(function() {
         contentType: 'application/json',
         data: { order: '-createdAt'},
         success: function(data) {
-          console.log(data);
           console.log('chatterbox: Messages fetched');
 
           // Don't bother if we have nothing to work with
@@ -163,7 +162,7 @@ $(function() {
         $message.text(data.text).appendTo($chat);
 
         // Add the message to the UI
-        app.$chats.append($chat);
+        app.$chats.prepend($chat);
       }
     },
     addFriend: function(evt) {
