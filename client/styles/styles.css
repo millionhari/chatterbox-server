@@ -111,5 +111,17 @@ text-decoration:none;
 
 input.submit:hover {
     cursor: pointer;
-    background-color: grey;
+    background-color: #333333;
+    color: white;
+}
+
+.timestamp {
+    font-size: 12px;
+    color: #555;
+    margin-left: 2px;
+}
+select#roomSelect{
+    border: 1px solid rgba(0,0,0,.4);
+    border-radius: 0;
+    font-size: 13px;
 }

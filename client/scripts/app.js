@@ -119,7 +119,7 @@ $(function() {
       // }
     },
     populateRooms: function(results) {
-      app.$roomSelect.html('<option value="__newRoom">New room...</option><option value="" selected>Lobby</option></select>');
+      app.$roomSelect.html('<option value="__newRoom">New room...</option></select>');
 
       if (results) {
         var rooms = {};
@@ -157,14 +157,18 @@ $(function() {
         // Add in the message data using DOM methods to avoid XSS
         // Store the username in the element's data
         var $username = $('<span class="username"/>');
-        $username.text(data.username+': ').attr('data-username', data.username).attr('data-roomname',data.roomname).appendTo($chat);
+        $username.text(data.username+' ').attr('data-username', data.username).attr('data-roomname',data.roomname).appendTo($chat);
 
         // Add the friend class
         if (app.friends[data.username] === true)
           $username.addClass('friend');
 
+        var $timestamp = $('<span class="timestamp">('+ moment(data.createdAt).fromNow() +')</span>');
+        $timestamp.appendTo($chat);
+
         var $message = $('<br><span/>');
         $message.text(data.text).appendTo($chat);
+
 
         // Add the message to the UI
         app.$chats.prepend($chat);
