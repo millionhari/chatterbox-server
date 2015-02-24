@@ -1,12 +1,14 @@
 body {
-    background: #eee;
+    background: #333;
     text-align: center;
     padding: 0 25px;
     font-family: arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #main {
     width: 500px;
+    height: 700px;
     margin: auto;
     text-align: left;
     background: white;
@@ -17,9 +19,15 @@ body {
 
 #main h1 {
     margin-top: 0;
-    font-size: 35px;
+    font-size: 4em;
     margin-bottom: 5px;
     padding: 5px;
+    font-family: 'Roboto Slab', serif;
+    text-align: center;
+}
+
+#rooms {
+    text-align: center;
 }
 
 #main h1 span {
@@ -50,7 +58,9 @@ form {
     padding: 20px;
     padding-left: 0;
     margin-bottom: 20px;
+    text-align: center;
 }
+
 
 form input[type=text] {
     margin-right: 10px;
@@ -73,12 +83,33 @@ form input[type=text] {
     background-color: #ddd;
 }
 
+#chats {
+    height: 472px;
+    overflow: auto;
+}
+
 .spinner {
+    right: calc(50% - 38px);
+    top: 20px;
     float: right;
     height: 46px;
     margin-bottom: 5px;
+    position: absolute;
 }
 
 .spinner img {
     padding: 10px;
+}
+
+input.submit {
+    padding: 7px;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.3);
+    color:#000;
+text-decoration:none;
+}
+
+input.submit:hover {
+    cursor: pointer;
+    background-color: grey;
 }

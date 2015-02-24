@@ -66,7 +66,11 @@ $(function() {
           console.log('chatterbox: Messages fetched');
 
           // Don't bother if we have nothing to work with
-          if (!data.results || !data.results.length) { return; }
+
+          if (!data.results || !data.results.length) {
+            app.stopSpinner();
+            return;
+          }
 
           // Get the last message
           var mostRecentMessage = data.results[data.results.length-1];
@@ -220,10 +224,11 @@ $(function() {
 
       // Stop the form from submitting
       evt.preventDefault();
+
     },
     startSpinner: function(){
       $('.spinner img').show();
-      $('form input[type=submit]').attr('disabled', "true");
+      // $('form input[type=submit]').attr('disabled', "true");
     },
 
     stopSpinner: function(){
