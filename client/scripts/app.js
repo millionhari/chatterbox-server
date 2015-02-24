@@ -47,7 +47,7 @@ $(function() {
         data: JSON.stringify(data),
         contentType: 'application/json',
         success: function (data) {
-          console.log('chatterbox: Message sent');
+          console.log('chatterbox: Message sent', data);
           // Trigger a fetch to update the messages, pass true to animate
           app.fetch();
         },
